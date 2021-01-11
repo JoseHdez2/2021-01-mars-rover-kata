@@ -37,18 +37,18 @@ class MarsRoverTest {
         )
 
     @Test
-    fun `empty command means no moving`() =
-        testMove(
-            initialPos = Position(0,0, Direction.NORTH),
-            command = "",
-            expectedPos = Position(0, 0, Direction.NORTH)
-        )
+    fun `empty and blank commands throw EmptyCommand exception`() =
+        listOf("", "   ", "        ").forEach { command ->
+            assertThrows<BlankCommandException> {
+                MarsRoverMovement.move(initialPos = Position(0, 0, Direction.NORTH), commandStr = command)
+            }
+        }
 
     @Test
-    fun `illegal commands throw an exception`() =
+    fun `illegal commands throw InvalidCommand exception`() =
         listOf("F F", "U", "DW", "HELLO").forEach { command ->
-            assertThrows<IllegalArgumentException> {
-                MarsRoverMovement.move(initialPos = Position(0, 0, Direction.NORTH), commands = command)
+            assertThrows<InvalidCommandException> {
+                MarsRoverMovement.move(initialPos = Position(0, 0, Direction.NORTH), commandStr = command)
             }
         }
 }
