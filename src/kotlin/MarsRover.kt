@@ -2,7 +2,7 @@ package mars_rover
 
 import BlankCommandException
 import InvalidCommandException
-import kotlin.test.assertEquals
+import java.lang.IllegalArgumentException
 
 enum class Direction { NORTH, SOUTH, EAST, WEST }
 
@@ -11,7 +11,7 @@ data class Position(val x : Int, val y : Int, val direction: Direction)
 enum class Command { FORWARD }
 
 val charToCommand = hashMapOf(
-    "F" to Command.FORWARD
+    'F' to Command.FORWARD
 )
 
 class MarsRoverMovement {
@@ -20,7 +20,8 @@ class MarsRoverMovement {
             if(commandStr.isBlank()){
                 throw BlankCommandException("Command [${commandStr}] is blank!")
             }
-            val cmdList = commandStr.map { charToCommand.get(it) ?: throw InvalidCommandException("Command [${commandStr}] contains illegal character [${it}] !") }
+            val cmdList = commandStr.map { charToCommand[it] ?:
+                throw InvalidCommandException("Command [${commandStr}] contains illegal character [${it}] !") }
             var finalPos = initialPos
             for (cmd : Command in cmdList) when(cmd) {
                 Command.FORWARD -> finalPos = forward(finalPos)
@@ -28,7 +29,7 @@ class MarsRoverMovement {
             return finalPos
         }
 
-        fun forward(position: Position) : Position {
+        private fun forward(position: Position) : Position {
             return when(position.direction) {
                 Direction.NORTH -> position.let { it.copy(y = it.y + 1) }
                 Direction.SOUTH -> position.let { it.copy(y = it.y - 1) }
@@ -39,8 +40,26 @@ class MarsRoverMovement {
     }
 }
 
-fun main(args: Array<String>) {
-    val res = MarsRoverMovement.move(Position(0, 0, Direction.NORTH), "F")
-    assertEquals(Position(0, 1, Direction.NORTH), res)
+class MarsRoverService {
+    companion object {
+        fun parseAndMove(args: Array<String>) : String{
+            if(args.size != 4){
+                "Arguments: x, y, dir, commandStr.".let { throw Exception(it) }
+            }
+            val x = args[0].toIntOrNull() ?:
+                throw IllegalArgumentException("Invalid first argument (x)! Expected an Int.")
+            val y = args[1].toIntOrNull() ?:
+                throw IllegalArgumentException("Invalid second argument (y)! Expected an Int.")
+            val dir = Direction.values().find { it.name == args[2]} ?:
+                throw IllegalArgumentException("Invalid third argument (dir)! Expected one of: ${Direction.values().map { it.name }}.")
+            val commandStr = args[3]
+            val pos = MarsRoverMovement.move(Position(x, y, dir), commandStr)
+            return pos.let { "(${it.x}, ${it.y}) ${it.direction}" }
+        }
+    }
+}
+
+fun main(args: Array<String>) : String {
+    return MarsRoverService.parseAndMove(args)
 }
 

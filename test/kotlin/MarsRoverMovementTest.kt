@@ -3,9 +3,8 @@ import mars_rover.MarsRoverMovement
 import mars_rover.Position
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import java.lang.IllegalArgumentException
 
-class MarsRoverTest {
+class MarsRoverMovementTest {
 
     private fun testMove(initialPos: Position, command: String, expectedPos: Position) {
         val finalPos = MarsRoverMovement.move(initialPos, command)
