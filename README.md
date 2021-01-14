@@ -6,5 +6,6 @@ Mars Rover kata.
 ```
 git clone https://github.com/JoseHdez2/2021-01-mars-rover-kata.git
 cd 2021-01-mars-rover-kata
-gradlew clean test
+./gradlew clean test
 ```
+Note: prepend `gradlew` with `./` if using a Unix terminal.
