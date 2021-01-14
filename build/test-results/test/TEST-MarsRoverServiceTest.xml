@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MarsRoverServiceTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2021-01-14T20:14:58" hostname="DESKTOP-EK32IJ7" time="0.01">
+  <properties/>
+  <testcase name="illegal third argument()" classname="MarsRoverServiceTest" time="0.003"/>
+  <testcase name="illegal second argument (blank)()" classname="MarsRoverServiceTest" time="0.001"/>
+  <testcase name="valid arguments once()" classname="MarsRoverServiceTest" time="0.001"/>
+  <testcase name="invalid command()" classname="MarsRoverServiceTest" time="0.001"/>
+  <testcase name="illegal first argument (char) ()" classname="MarsRoverServiceTest" time="0.001"/>
+  <testcase name="valid arguments thrice()" classname="MarsRoverServiceTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

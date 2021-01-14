@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MarsRoverMovementTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-01-14T20:14:58" hostname="DESKTOP-EK32IJ7" time="0.078">
+  <properties/>
+  <testcase name="empty and blank commands throw EmptyCommand exception()" classname="MarsRoverMovementTest" time="0.057"/>
+  <testcase name="illegal commands throw InvalidCommand exception()" classname="MarsRoverMovementTest" time="0.007"/>
+  <testcase name="move forward thrice()" classname="MarsRoverMovementTest" time="0.008"/>
+  <testcase name="move forward twice()" classname="MarsRoverMovementTest" time="0.001"/>
+  <testcase name="move forward once()" classname="MarsRoverMovementTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
